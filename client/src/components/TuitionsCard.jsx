@@ -1,9 +1,7 @@
 import React from "react";
-import { X, FilePenLine } from "lucide-react";
 import { Link } from "react-router";
 const TuitionsCard = ({ tuition }) => {
   const { name, email, subject,_id} = tuition;
-  console.log(tuition);
   return (
     <div className="card bg-base-100 w-96 shadow-sm">
       <figure>

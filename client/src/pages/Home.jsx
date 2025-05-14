@@ -1,11 +1,11 @@
-import React from "react";
+import React, { useState } from "react";
 import Banner from "../components/Banner";
 import { useLoaderData } from "react-router";
 import TuitionsCard from "../components/TuitionsCard";
 
 const Home = () => {
-  const tuitions = useLoaderData();
-
+  const initialTuitions = useLoaderData();
+  const [tuitions, setTuitions] = useState(initialTuitions);
   return (
     <div>
       <Banner></Banner>
@@ -16,12 +16,18 @@ const Home = () => {
         </h1>
         <p className="text-center mb-8">
           Accusamus et iusidio dignissimos ducimus blanditiis praesentium
-          voluptatum deleniti atque corrupti quos dolores etmquasa molestias<br /> 
+          voluptatum deleniti atque corrupti quos dolores etmquasa molestias
+          <br />
           epturi sint occaecati cupiditate non providente mikume molareshe.
-        </p >
+        </p>
         <div className=" grid grid-cols-1 md:grid-cols-3 gap-5">
           {tuitions.map((tuition) => (
-            <TuitionsCard tuition={tuition} key={tuition._id}></TuitionsCard>
+            <TuitionsCard
+              setTuitions={setTuitions}
+              tuitions={tuitions}
+              tuition={tuition}
+              key={tuition._id}
+            ></TuitionsCard>
           ))}
         </div>
       </div>
