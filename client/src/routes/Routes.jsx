@@ -3,6 +3,7 @@ import Main from "../layout/Main";
 import Home from "../pages/Home";
 import AddTuition from "../components/AddTuition";
 import UpdateTuition from "../components/UpdateTuition";
+import ShowDetails from "../pages/ShowDetails";
 
 export const router = createBrowserRouter([
   {
@@ -11,8 +12,14 @@ export const router = createBrowserRouter([
     children: [
       {
         index: true,
-        loader : () =>fetch(`http://localhost:5000/tuitions`),
+        loader: () => fetch(`http://localhost:5000/tuitions`),
         Component: Home,
+      },
+      {
+        path: "/showDetails/:id",
+        loader: ({ params }) =>
+          fetch(`http://localhost:5000/tuitions/${params.id}`),
+        Component: ShowDetails,
       },
       {
         path: "/addTuition",

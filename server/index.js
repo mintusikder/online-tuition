@@ -1,7 +1,7 @@
-const { MongoClient, ServerApiVersion } = require("mongodb");
+const { MongoClient, ServerApiVersion, ObjectId } = require("mongodb");
 const express = require("express");
 const cors = require("cors");
-require("dotenv").config()
+require("dotenv").config();
 const app = express();
 const port = process.env.PORT || 5000;
 //onlinetuition
@@ -23,7 +23,7 @@ const client = new MongoClient(uri, {
 async function run() {
   try {
     const tuitionCollection = client.db("tuitionDb").collection("tuitions");
-   
+
     app.get("/tuitions", async (req, res) => {
       const cursor = tuitionCollection.find();
       const result = await cursor.toArray();
@@ -33,6 +33,14 @@ async function run() {
     app.post("/tuitions", async (req, res) => {
       const newUser = req.body;
       const result = await tuitionCollection.insertOne(newUser);
+      res.send(result);
+    });
+
+    //single data
+    app.get("/tuitions/:id", async (req, res) => {
+      const id = req.params.id;
+      const query = { _id: new ObjectId(id) };
+      const result = await tuitionCollection.findOne(query);
       res.send(result);
     });
 

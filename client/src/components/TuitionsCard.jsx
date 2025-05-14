@@ -1,7 +1,8 @@
 import React from "react";
-
+import { X, FilePenLine } from "lucide-react";
+import { Link } from "react-router";
 const TuitionsCard = ({ tuition }) => {
-  const { name, email, subject, photo } = tuition;
+  const { name, email, subject,_id} = tuition;
   console.log(tuition);
   return (
     <div className="card bg-base-100 w-96 shadow-sm">
@@ -12,12 +13,11 @@ const TuitionsCard = ({ tuition }) => {
         />
       </figure>
       <div className="card-body">
-        <h2 className="card-title">{name}</h2>
-        <p>{email}</p>
-        <p>{subject}</p>
+        <h2 className="card-title">Name: {name}</h2>
+        <p>Email: {email}</p>
+        <p>Subject: {subject}</p>
         <div className="card-actions justify-end">
-          <div className="badge badge-outline">Fashion</div>
-          <div className="badge badge-outline">Products</div>
+          <Link to={`/showDetails/${_id}`} className="btn btn-primary">Show Details</Link>
         </div>
       </div>
     </div>
