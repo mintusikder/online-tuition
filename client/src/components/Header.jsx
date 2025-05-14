@@ -7,6 +7,9 @@ const Header = () => {
       <li>
         <NavLink to={"/"}>Home</NavLink>
       </li>
+      <li>
+        <NavLink to={"/addTuition"}>Add Tuition</NavLink>
+      </li>
     </>
   );
   return (
