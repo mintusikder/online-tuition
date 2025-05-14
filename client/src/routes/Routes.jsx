@@ -26,7 +26,9 @@ export const router = createBrowserRouter([
         Component: AddTuition,
       },
       {
-        path: "/updateTuition",
+        path: "/updateTuition/:id",
+         loader: ({ params }) =>
+          fetch(`http://localhost:5000/tuitions/${params.id}`),
         Component: UpdateTuition,
       },
     ],

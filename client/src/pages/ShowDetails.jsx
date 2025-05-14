@@ -72,7 +72,7 @@ const ShowDetails = ({ setTuitions, tuitions }) => {
           </div>
 
           <div className="card-actions justify-end mt-4">
-            <Link to={`/edit/${_id}`} className="btn btn-primary">
+            <Link to={`/updateTuition/${_id}`} className="btn btn-primary">
               <FilePenLine className="mr-2" />
               Edit
             </Link>
