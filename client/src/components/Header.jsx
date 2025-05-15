@@ -1,7 +1,9 @@
-import React from "react";
+import React, { use } from "react";
 import { Link, NavLink } from "react-router";
+import { AuthContext } from "../provider/AuthProvider";
 
 const Header = () => {
+  const { user, logOutUser } = use(AuthContext);
   const nav = (
     <>
       <li>
@@ -12,6 +14,9 @@ const Header = () => {
       </li>
     </>
   );
+  // const handelLogOut () =>{
+
+  // }
   return (
     <div className="navbar bg-base-100 shadow-sm">
       <div className="navbar-start">
@@ -46,7 +51,13 @@ const Header = () => {
         <ul className="menu menu-horizontal px-1">{nav}</ul>
       </div>
       <div className="navbar-end">
-        <Link to={"/login"} className="btn">Login</Link>
+        {user ? (
+          <button onClick={() =>logOutUser()}>LogOut</button>
+        ) : (
+          <Link to={"/login"} className="btn">
+            Login
+          </Link>
+        )}
       </div>
     </div>
   );
