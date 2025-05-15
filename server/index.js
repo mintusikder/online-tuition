@@ -23,6 +23,7 @@ const client = new MongoClient(uri, {
 async function run() {
   try {
     const tuitionCollection = client.db("tuitionDb").collection("tuitions");
+    const userCollection = client.db("tuitionDb").collection("users");
 
     app.get("/tuitions", async (req, res) => {
       const cursor = tuitionCollection.find();
@@ -65,6 +66,14 @@ async function run() {
       const query = { _id: new ObjectId(id) };
       const result = await tuitionCollection.deleteOne(query);
       res.send(result);
+    });
+
+    //user related api
+    app.post("/users", async (req, res) => {
+      const userProfile = req.body;
+      const result = await userCollection.insertOne(userProfile);
+      res.send(result);
+      console.log(userProfile);
     });
 
     console.log(

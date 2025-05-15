@@ -6,14 +6,35 @@ const Register = () => {
   const { createUser } = use(AuthContext);
   const handelRegister = (e) => {
     e.preventDefault();
-    const name = e.target.name.value;
-    const email = e.target.email.value;
-    const password = e.target.password.value;
-    console.log(name, email, password);
+    // const name = e.target.name.value;
+    // const email = e.target.email.value;
+    // const password = e.target.password.value;
+    // console.log(name, email, password);
+    const form = e.target;
+    const formData = new FormData(form);
+    const { email, password, ...userProfile } = Object.fromEntries(
+      formData.entries()
+    );
+    console.log(email, password, userProfile);
     createUser(email, password)
       .then((result) => {
         const user = result.user;
         console.log(user);
+        // save profile in db
+        fetch("http://localhost:5000/users", {
+          method: "POST",
+          headers: {
+            "content-type": "application/json",
+          },
+          body: JSON.stringify(userProfile),
+        })
+          .then((res) => res.json())
+          .then((data) => {
+            if (data.insertedId) {
+              alert("data save");
+              console.log("after profile save", data);
+            }
+          });
       })
       .catch((error) => {
         console.log(error);
@@ -40,6 +61,13 @@ const Register = () => {
                 className="input"
                 placeholder="Name"
               />
+              <label className="label">Number</label>
+              <input
+                type="text"
+                name="number"
+                className="input"
+                placeholder="Number"
+              />
               <label className="label">Email</label>
               <input
                 name="email"
@@ -58,8 +86,7 @@ const Register = () => {
               <button className="btn btn-neutral mt-4">Register</button>
             </form>
             <Link to={"/login"}>
-              Already have account{" "}
-              <span className="text-blue-600">Login</span>
+              Already have account <span className="text-blue-600">Login</span>
             </Link>
           </div>
         </div>
