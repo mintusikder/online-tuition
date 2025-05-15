@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from "react-router";
-const TuitionsCard = ({ tuition }) => {
+const TuitionsCard = ({ tuition,setTuitions,tuitions }) => {
   const { name, email, subject,_id} = tuition;
   return (
     <div className="card bg-base-100 w-96 shadow-sm">
@@ -15,7 +15,9 @@ const TuitionsCard = ({ tuition }) => {
         <p>Email: {email}</p>
         <p>Subject: {subject}</p>
         <div className="card-actions justify-end">
-          <Link to={`/showDetails/${_id}`} className="btn btn-primary">Show Details</Link>
+          <Link  to={`/showDetails/${_id}`} className="btn btn-primary">
+          Show Details
+          </Link>
         </div>
       </div>
     </div>

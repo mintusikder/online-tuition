@@ -2,10 +2,13 @@ import React, { useState } from "react";
 import Banner from "../components/Banner";
 import { useLoaderData } from "react-router";
 import TuitionsCard from "../components/TuitionsCard";
+import Footer from "../components/Footer";
+import AboutOnlineTuition from "./AboutOnlineTuition";
 
 const Home = () => {
   const initialTuitions = useLoaderData();
   const [tuitions, setTuitions] = useState(initialTuitions);
+  console.log("home",tuitions)
   return (
     <div>
       <Banner></Banner>
@@ -31,6 +34,8 @@ const Home = () => {
           ))}
         </div>
       </div>
+      <AboutOnlineTuition></AboutOnlineTuition>
+      <Footer></Footer>
     </div>
   );
 };

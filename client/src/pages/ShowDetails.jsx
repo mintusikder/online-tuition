@@ -5,7 +5,7 @@ import Swal from "sweetalert2";
 
 const ShowDetails = ({ setTuitions, tuitions }) => {
   const tuition = useLoaderData();
-
+console.log(tuitions)
   const { fee, room, subject, phone, email, name, _id } = tuition;
 
   const handleDelete = () => {
@@ -31,10 +31,13 @@ const ShowDetails = ({ setTuitions, tuitions }) => {
                 icon: "success",
               });
 
-              const remaining = tuitions.filter(
+           if(tuitions){
+               const remaining = tuitions.filter(
                 (tuition) => tuition._id !== _id
               );
               setTuitions(remaining);
+           }
+              
             }
           });
       }
