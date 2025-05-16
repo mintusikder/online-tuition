@@ -6,6 +6,7 @@ import UpdateTuition from "../components/UpdateTuition";
 import ShowDetails from "../pages/ShowDetails";
 import Login from "../pages/Login";
 import Register from "../pages/Register";
+import Users from "../components/Users";
 
 export const router = createBrowserRouter([
   {
@@ -32,6 +33,11 @@ export const router = createBrowserRouter([
         loader: ({ params }) =>
           fetch(`http://localhost:5000/tuitions/${params.id}`),
         Component: UpdateTuition,
+      },
+      {
+        path: "/users",
+        loader  : () => fetch('http://localhost:5000/users'),
+        Component: Users,
       },
       {
         path: "/login",

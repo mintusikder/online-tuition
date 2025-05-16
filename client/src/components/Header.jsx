@@ -12,6 +12,9 @@ const Header = () => {
       <li>
         <NavLink to={"/addTuition"}>Add Tuition</NavLink>
       </li>
+      <li>
+        <NavLink to={"/users"}>Users</NavLink>
+      </li>
     </>
   );
   // const handelLogOut () =>{
