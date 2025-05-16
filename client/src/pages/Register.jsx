@@ -12,14 +12,17 @@ const Register = () => {
     // console.log(name, email, password);
     const form = e.target;
     const formData = new FormData(form);
-    const { email, password, ...userProfile } = Object.fromEntries(
-      formData.entries()
-    );
-    console.log(email, password, userProfile);
+    const { email, password, ...rest } = Object.fromEntries(formData.entries());
     createUser(email, password)
       .then((result) => {
         const user = result.user;
         console.log(user);
+        const userProfile = {
+          email,
+          ...rest,
+          creationTime: result.user?.metadata?.creationTime,
+          lastSignInTime: result.user?.metadata?.lastSignInTime,
+        };
         // save profile in db
         fetch("http://localhost:5000/users", {
           method: "POST",
